@@ -1,0 +1,6 @@
+framework module Pods_minicloudmonitorUITests {
+  umbrella header "Pods-minicloudmonitorUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
