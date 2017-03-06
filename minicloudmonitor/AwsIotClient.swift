@@ -128,7 +128,16 @@ class AwsIotClient {
         return connected
     }
 
+
     
+    func publishToTopic(message: String) {
+        if (connected) {
+            iotDataManager.publishString(message, onTopic:iotTopicName, qoS:.messageDeliveryAttemptedAtMostOnce)
+            logger.print("Published to topic: \(message)")
+        }
+    }
+    
+
 
     //
     // Create certificate and store the certificateID in NSUserDefaults
@@ -175,7 +184,7 @@ class AwsIotClient {
             }
             else
             {
-                self.logger.print("Unable to create keys and/or certificate, check values in Constants.swift\n")
+                self.logger.print("Unable to create keys and/or certificate, check settings\n")
             }
         } )
 

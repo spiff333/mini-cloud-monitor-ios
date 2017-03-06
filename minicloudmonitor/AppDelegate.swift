@@ -19,11 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         //UserDefaults.standard.removeObject(forKey: "certificateId")
         //UserDefaults.standard.removeObject(forKey: "awsRegion")
-        
+        /*
         for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
             print("\(key) = \(value)")
         }
-
+*/
         
         return true
     }

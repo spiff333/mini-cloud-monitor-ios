@@ -40,12 +40,12 @@ class MainViewController: UIViewController {
                 
                 // reduce state changes
                 if ( abs(lastHueValue-hue) >= 0.025 ) {
-                    print("hue: \(hue)")
                     cloudImageView.tintColor = UIColor(hue: hue, saturation: 1.0, brightness: 0.9, alpha: 1.0)
                     lastHueValue = hue
-                    logger.print("Hue: \(hue)")
+
+                    awsIotClient.publishToTopic(message: "{\"colour\": \"\(cloudImageView.tintColor.toHex()!)\"}");
                 }
-                
+
                 return
             }
         }
