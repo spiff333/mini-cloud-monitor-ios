@@ -10,12 +10,18 @@
 		373E7D9330E103E54BAC00CB /* Pods_minicloudmonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F936351B61D443DA36DF9C29 /* Pods_minicloudmonitorTests.framework */; };
 		4E76C9717CDBAEBCC333DD94 /* Pods_minicloudmonitorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BCA8434565F7E9233F5907 /* Pods_minicloudmonitorUITests.framework */; };
 		DAC3CC791E699AA5007EC0A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CC781E699AA5007EC0A7 /* AppDelegate.swift */; };
-		DAC3CC7B1E699AA5007EC0A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CC7A1E699AA5007EC0A7 /* ViewController.swift */; };
+		DAC3CC7B1E699AA5007EC0A7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CC7A1E699AA5007EC0A7 /* MainViewController.swift */; };
 		DAC3CC7E1E699AA5007EC0A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC3CC7C1E699AA5007EC0A7 /* Main.storyboard */; };
 		DAC3CC801E699AA5007EC0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC3CC7F1E699AA5007EC0A7 /* Assets.xcassets */; };
 		DAC3CC831E699AA5007EC0A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC3CC811E699AA5007EC0A7 /* LaunchScreen.storyboard */; };
 		DAC3CC8E1E699AA5007EC0A7 /* minicloudmonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CC8D1E699AA5007EC0A7 /* minicloudmonitorTests.swift */; };
 		DAC3CC991E699AA5007EC0A7 /* minicloudmonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CC981E699AA5007EC0A7 /* minicloudmonitorUITests.swift */; };
+		DAC3CCA71E6A4655007EC0A7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CCA61E6A4655007EC0A7 /* Constants.swift */; };
+		DAC3CCAD1E6AE044007EC0A7 /* AwsIotClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CCAC1E6AE044007EC0A7 /* AwsIotClient.swift */; };
+		DAC3CCAF1E6AFFA2007EC0A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CCAE1E6AFFA2007EC0A7 /* SettingsViewController.swift */; };
+		DAC3CCF31E6C3104007EC0A7 /* RainbowImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CCF21E6C3104007EC0A7 /* RainbowImageView.swift */; };
+		DAC3CD311E6D0D8F007EC0A7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CD301E6D0D8F007EC0A7 /* Logger.swift */; };
+		DACBA3631E6D680400B56026 /* AwsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA3621E6D680400B56026 /* AwsHelper.swift */; };
 		F905912EA0B067E639332D9B /* Pods_minicloudmonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E09C6BC9FC66F7B6C37825 /* Pods_minicloudmonitor.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +52,7 @@
 		A2990A24F1611F6E168CA433 /* Pods-minicloudmonitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-minicloudmonitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-minicloudmonitor/Pods-minicloudmonitor.debug.xcconfig"; sourceTree = "<group>"; };
 		DAC3CC751E699AA5007EC0A7 /* minicloudmonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = minicloudmonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC3CC781E699AA5007EC0A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DAC3CC7A1E699AA5007EC0A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DAC3CC7A1E699AA5007EC0A7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DAC3CC7D1E699AA5007EC0A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DAC3CC7F1E699AA5007EC0A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAC3CC821E699AA5007EC0A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +63,12 @@
 		DAC3CC941E699AA5007EC0A7 /* minicloudmonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = minicloudmonitorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC3CC981E699AA5007EC0A7 /* minicloudmonitorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minicloudmonitorUITests.swift; sourceTree = "<group>"; };
 		DAC3CC9A1E699AA5007EC0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAC3CCA61E6A4655007EC0A7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DAC3CCAC1E6AE044007EC0A7 /* AwsIotClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwsIotClient.swift; sourceTree = "<group>"; };
+		DAC3CCAE1E6AFFA2007EC0A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DAC3CCF21E6C3104007EC0A7 /* RainbowImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RainbowImageView.swift; sourceTree = "<group>"; };
+		DAC3CD301E6D0D8F007EC0A7 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		DACBA3621E6D680400B56026 /* AwsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwsHelper.swift; sourceTree = "<group>"; };
 		F1CD58AE70C8418F4A82C280 /* Pods-minicloudmonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-minicloudmonitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-minicloudmonitor/Pods-minicloudmonitor.release.xcconfig"; sourceTree = "<group>"; };
 		F936351B61D443DA36DF9C29 /* Pods_minicloudmonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_minicloudmonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,12 +149,18 @@
 		DAC3CC771E699AA5007EC0A7 /* minicloudmonitor */ = {
 			isa = PBXGroup;
 			children = (
-				DAC3CC781E699AA5007EC0A7 /* AppDelegate.swift */,
-				DAC3CC7A1E699AA5007EC0A7 /* ViewController.swift */,
-				DAC3CC7C1E699AA5007EC0A7 /* Main.storyboard */,
-				DAC3CC7F1E699AA5007EC0A7 /* Assets.xcassets */,
-				DAC3CC811E699AA5007EC0A7 /* LaunchScreen.storyboard */,
 				DAC3CC841E699AA5007EC0A7 /* Info.plist */,
+				DAC3CC7F1E699AA5007EC0A7 /* Assets.xcassets */,
+				DAC3CCA61E6A4655007EC0A7 /* Constants.swift */,
+				DAC3CD301E6D0D8F007EC0A7 /* Logger.swift */,
+				DAC3CC781E699AA5007EC0A7 /* AppDelegate.swift */,
+				DACBA3621E6D680400B56026 /* AwsHelper.swift */,
+				DAC3CCAC1E6AE044007EC0A7 /* AwsIotClient.swift */,
+				DAC3CCAE1E6AFFA2007EC0A7 /* SettingsViewController.swift */,
+				DAC3CC7A1E699AA5007EC0A7 /* MainViewController.swift */,
+				DAC3CCF21E6C3104007EC0A7 /* RainbowImageView.swift */,
+				DAC3CC811E699AA5007EC0A7 /* LaunchScreen.storyboard */,
+				DAC3CC7C1E699AA5007EC0A7 /* Main.storyboard */,
 			);
 			path = minicloudmonitor;
 			sourceTree = "<group>";
@@ -242,7 +260,7 @@
 				TargetAttributes = {
 					DAC3CC741E699AA5007EC0A7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = BB93KBGM5N;
+						DevelopmentTeam = QL3BR6TRGT;
 						ProvisioningStyle = Automatic;
 					};
 					DAC3CC881E699AA5007EC0A7 = {
@@ -449,8 +467,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAC3CC7B1E699AA5007EC0A7 /* ViewController.swift in Sources */,
+				DAC3CC7B1E699AA5007EC0A7 /* MainViewController.swift in Sources */,
+				DAC3CCF31E6C3104007EC0A7 /* RainbowImageView.swift in Sources */,
 				DAC3CC791E699AA5007EC0A7 /* AppDelegate.swift in Sources */,
+				DAC3CCA71E6A4655007EC0A7 /* Constants.swift in Sources */,
+				DAC3CCAF1E6AFFA2007EC0A7 /* SettingsViewController.swift in Sources */,
+				DACBA3631E6D680400B56026 /* AwsHelper.swift in Sources */,
+				DAC3CCAD1E6AE044007EC0A7 /* AwsIotClient.swift in Sources */,
+				DAC3CD311E6D0D8F007EC0A7 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,7 +625,7 @@
 			baseConfigurationReference = A2990A24F1611F6E168CA433 /* Pods-minicloudmonitor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BB93KBGM5N;
+				DEVELOPMENT_TEAM = QL3BR6TRGT;
 				INFOPLIST_FILE = minicloudmonitor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.plassmeier.apps.minicloudmonitor;
@@ -615,7 +639,7 @@
 			baseConfigurationReference = F1CD58AE70C8418F4A82C280 /* Pods-minicloudmonitor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BB93KBGM5N;
+				DEVELOPMENT_TEAM = QL3BR6TRGT;
 				INFOPLIST_FILE = minicloudmonitor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.plassmeier.apps.minicloudmonitor;
@@ -705,6 +729,7 @@
 				DAC3CC9F1E699AA5007EC0A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DAC3CCA01E699AA5007EC0A7 /* Build configuration list for PBXNativeTarget "minicloudmonitorTests" */ = {
 			isa = XCConfigurationList;
@@ -713,6 +738,7 @@
 				DAC3CCA21E699AA5007EC0A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DAC3CCA31E699AA5007EC0A7 /* Build configuration list for PBXNativeTarget "minicloudmonitorUITests" */ = {
 			isa = XCConfigurationList;
@@ -721,6 +747,7 @@
 				DAC3CCA51E699AA5007EC0A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

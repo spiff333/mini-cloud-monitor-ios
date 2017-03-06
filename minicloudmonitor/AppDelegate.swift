@@ -13,9 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+
+        //UserDefaults.standard.removeObject(forKey: "certificateId")
+        //UserDefaults.standard.removeObject(forKey: "awsRegion")
+        
+        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+            print("\(key) = \(value)")
+        }
+
+        
         return true
     }
 
