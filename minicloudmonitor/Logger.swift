@@ -11,7 +11,7 @@ import Foundation
 class Logger {
     
 
-    let loggerNotificationKey = "LoggerNotification"
+    let NotificationKey = "net.plassmeier.logger-notification"
 
     static let sharedInstance = Logger()
     
@@ -21,11 +21,11 @@ class Logger {
     
     func print(_ str: String) {
         log.append(str + "\n")
-        NotificationCenter.default.post( name: Notification.Name(rawValue: loggerNotificationKey), object: self )
+        NotificationCenter.default.post( name: Notification.Name(rawValue: self.NotificationKey), object: self )
     }
     
     func clear() {
         log = ""
-        NotificationCenter.default.post( name: Notification.Name(rawValue: loggerNotificationKey), object: self )
+        NotificationCenter.default.post( name: Notification.Name(rawValue: self.NotificationKey), object: self )
     }
 }

@@ -16,21 +16,26 @@ class AwsIotClient {
     var cognitoIdentityPoolId: String!
     var policyName: String!
     
-    var connected = false
+    var connectionStatus: AWSIoTMQTTStatus = .disconnected
     
     var iotDataManager: AWSIoTDataManager!
     var iotData: AWSIoTData!
     var iotManager: AWSIoTManager!
     var iot: AWSIoT!
     
+    let NotificationKey = "net.plassmeier.mqtt-notification"
+
     var logger = Logger.sharedInstance
 
     
+    static let sharedInstance = AwsIotClient()
+
     func connect() {
         let defaults = UserDefaults.standard
         
         // check that all parameters are set
         if (!defaults.bool(forKey: "settingsComplete")) {
+            self.logger.print("⚠️ AWS IoT Connection settings not complete!")
             return
         }
 
@@ -66,44 +71,37 @@ class AwsIotClient {
 
         func mqttEventCallback( _ status: AWSIoTMQTTStatus )
         {
-            DispatchQueue.main.async {
-                self.logger.print("connection status = \(status.rawValue)\n")
-                switch(status)
-                {
-                case .connecting:
-                    self.logger.print("Connecting...")
-                    
-                case .connected:
-                    self.connected = true
-                    
-                    let uuid = UUID().uuidString;
-                    let defaults = UserDefaults.standard
-                    let certificateId = defaults.string( forKey: "certificateId")
-                    
-                    self.logger.print("Connected\nUsing certificate:\n\(certificateId!)\n\n\nClient ID:\n\(uuid)")
-                    
-                case .disconnected:
-                    self.connected = false
-                    self.logger.print("Disconnected")
-                    
-                case .connectionRefused:
-                    self.connected = false
-                    self.logger.print("Connection Refused")
-                    
-                case .connectionError:
-                    self.connected = false
-                    self.logger.print("Connection Error")
-                    
-                case .protocolError:
-                    self.connected = false
-                    self.logger.print("Protocol Error")
+            self.connectionStatus = status
 
-                default:
-                    self.logger.print("Unknown State: \(status.rawValue)")
-                    
-                }
-                NotificationCenter.default.post( name: Notification.Name(rawValue: "connectionStatusChanged"), object: self )
+            switch(status) {
+            case .connecting:
+                self.logger.print("🔌 Service connecting...")
+                
+            case .connected:
+                let uuid = UUID().uuidString;
+                let defaults = UserDefaults.standard
+                let certificateId = defaults.string( forKey: "certificateId")
+                
+                self.logger.print("🔌 Connected\nCertificate:\(certificateId!)\nClient ID:\n\(uuid)")
+                
+            case .disconnected:
+                self.logger.print("🔌 Service disconnected.")
+                
+            case .connectionRefused:
+                self.logger.print("🔌 Connection Refused.")
+                
+            case .connectionError:
+                self.logger.print("🔌 Connection Error.")
+                
+            case .protocolError:
+                self.logger.print("🔌 Protocol Error.")
+                
+            default:
+                self.logger.print("🔌 Unknown State:\n\(status.rawValue)")
+                
             }
+
+            NotificationCenter.default.post( name: Notification.Name(rawValue: self.NotificationKey), object: self )
         }
 
         let certificateId = UserDefaults.standard.string( forKey: "certificateId" )
@@ -114,26 +112,18 @@ class AwsIotClient {
     
 
     func disconnect() {
-        self.logger.print("Disconnecting...\n")
-
+        self.logger.print("🔌 Service disconnecting...")
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             self.iotDataManager.disconnect();
-            self.connected = false
         }
-    }
-    
-    
-
-    func isConnected() -> Bool {
-        return connected
     }
 
 
     
     func publishToTopic(message: String) {
-        if (connected) {
+        if (connectionStatus == .connected) {
             iotDataManager.publishString(message, onTopic:iotTopicName, qoS:.messageDeliveryAttemptedAtMostOnce)
-            logger.print("Published to topic: \(message)")
+            logger.print("Mqtt -> \(message)")
         }
     }
     
@@ -143,10 +133,10 @@ class AwsIotClient {
     // Create certificate and store the certificateID in NSUserDefaults
     //
     func createCertificateAndConnect() {
-        self.logger.print("Creating new keys and certificate...\n")
+        self.logger.print("\n🔑 Creating Keys & Certificate.")
 
         let csrDictionary = [ "commonName":CertificateSigningRequestCommonName, "countryName":CertificateSigningRequestCountryName, "organizationName":CertificateSigningRequestOrganizationName, "organizationalUnitName":CertificateSigningRequestOrganizationalUnitName ]
-        
+
         self.iotManager.createKeysAndCertificate(fromCsr: csrDictionary, callback: {  (response ) -> Void in
             if (response != nil)
             {
@@ -154,10 +144,9 @@ class AwsIotClient {
 
                 defaults.set(response?.certificateId, forKey:"certificateId")
                 defaults.set(response?.certificateArn, forKey:"certificateArn")
+                self.logger.print("🔑 Keys & Certificate: [\(response)]")
 
-                self.logger.print("response: [\(response)]\n")
-
-                
+                self.logger.print("\n📎 Attaching IoT Policy.")
                 let attachPrincipalPolicyRequest = AWSIoTAttachPrincipalPolicyRequest()
                 attachPrincipalPolicyRequest?.policyName = self.policyName
                 attachPrincipalPolicyRequest?.principal = response?.certificateArn
@@ -166,9 +155,8 @@ class AwsIotClient {
                 //
                 self.iot.attachPrincipalPolicy(attachPrincipalPolicyRequest!).continueWith (block: { (task) -> AnyObject? in
                     if let error = task.error {
-                        self.logger.print("failed: [\(error)]\n")
+                        self.logger.print("📎 Policy error: [\(error)]")
                     }
-                    self.logger.print("result: [\(task.result)]\n")
 
                     //
                     // Connect to the AWS IoT platform
@@ -184,7 +172,7 @@ class AwsIotClient {
             }
             else
             {
-                self.logger.print("Unable to create keys and/or certificate, check settings\n")
+                self.logger.print("🔑 Keys & Certificate: Unable to create Keys and/or Certificate. Please check settings.")
             }
         } )
 

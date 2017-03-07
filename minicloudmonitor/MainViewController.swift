@@ -11,13 +11,14 @@ import AWSIoT
 
 class MainViewController: UIViewController {
 
-    let awsIotClient = AwsIotClient()
-
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var cloudImageView: UIButton!
 
     var lastHueValue: CGFloat = 0.0
+
     var logger = Logger.sharedInstance
+    let awsIotClient = AwsIotClient.sharedInstance
+    
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }

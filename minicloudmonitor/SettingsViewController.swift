@@ -18,12 +18,16 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var policyTextField: UITextField!
     @IBOutlet weak var cognitoTextField: UITextField!
     
+    @IBOutlet weak var connectButton: UIButton!
+    
     @IBOutlet weak var logTextView: UITextView!
     @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var changesMade: Bool = false
     
     var logger = Logger.sharedInstance
+    let awsIotClient = AwsIotClient.sharedInstance
 
 
     override func viewDidLoad() {
@@ -53,14 +57,44 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         policyTextField.text = defaults.string(forKey: "policyName") ?? ""
         
         logTextView.resignFirstResponder()
+        logTextView.clipsToBounds = true
+        logTextView.layer.cornerRadius = 5.0
         logTextView.text = logger.log
 
-        NotificationCenter.default.addObserver(self, selector: #selector(updateLogTextView), name: NSNotification.Name(rawValue: logger.loggerNotificationKey), object: nil)
+        // Logger notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLogTextView), name: NSNotification.Name(rawValue: logger.NotificationKey), object: nil)
+        
+        // AWS IoT Client notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(updateConnectButton), name: NSNotification.Name(rawValue: awsIotClient.NotificationKey), object: nil)
+        
+        updateConnectButton()
     }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true;
+    
+    func animateTextField(textField: UITextField, up: Bool)
+    {
+        let movementDistance:CGFloat = -130
+        let movementDuration: Double = 0.3
+        
+        var movement:CGFloat = 0
+        if up {
+            movement = movementDistance
+        } else {
+            movement = -movementDistance
+        }
+        UIView.beginAnimations("animateTextField", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.animateTextField(textField: textField, up:true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.animateTextField(textField: textField, up:false)
     }
     
     func textFieldDidChange(textField: UITextField) {
@@ -68,11 +102,43 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         print("changes made")
     }
     
-    @IBAction func connectButtonPressed(_ sender: UIButton) {
-        if (changesMade) {
-            storeSettings()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+    
+    func updateConnectButton() {
+        switch(awsIotClient.connectionStatus) {
+        case .connecting:
+            self.connectButton.setTitle("Connecting", for: .normal)
+            activityIndicator.startAnimating()
+            connectButton.isEnabled = false
+            
+        case .connected:
+            self.connectButton.setTitle("Disconnect", for: .normal)
+            activityIndicator.stopAnimating()
+            connectButton.isEnabled = true
+            
+        default:
+            self.connectButton.setTitle("Connect", for: .normal)
+            activityIndicator.stopAnimating()
+            connectButton.isEnabled = true
         }
-        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func connectButtonPressed(_ sender: UIButton) {
+        storeSettings()
+        if (awsIotClient.connectionStatus != .connected) {
+            awsIotClient.connect()
+        } else {
+            // there is no MQTT notification status for disconnecting
+            connectButton.setTitle("Connecting", for: .normal)
+            connectButton.isEnabled = false
+            activityIndicator.startAnimating()
+
+            awsIotClient.disconnect()
+        }
+        updateConnectButton()
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
@@ -86,7 +152,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateLogTextView() {
-        logTextView.text = logger.log
+        DispatchQueue.main.async {
+            self.logTextView.text = self.logger.log
+        }
     }
     
     func storeSettings() {
