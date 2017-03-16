@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		373E7D9330E103E54BAC00CB /* Pods_minicloudmonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F936351B61D443DA36DF9C29 /* Pods_minicloudmonitorTests.framework */; };
 		4E76C9717CDBAEBCC333DD94 /* Pods_minicloudmonitorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BCA8434565F7E9233F5907 /* Pods_minicloudmonitorUITests.framework */; };
+		DA53D2781E6FB5F700A4C083 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA53D2771E6FB5F700A4C083 /* Default-568h@2x.png */; };
 		DAB676351E6D9108001CC22B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB676341E6D9108001CC22B /* Extensions.swift */; };
 		DAC3CC791E699AA5007EC0A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CC781E699AA5007EC0A7 /* AppDelegate.swift */; };
 		DAC3CC7B1E699AA5007EC0A7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3CC7A1E699AA5007EC0A7 /* MainViewController.swift */; };
@@ -51,6 +52,7 @@
 		821FC8F5210E841C9BB97CEE /* Pods-minicloudmonitorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-minicloudmonitorUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-minicloudmonitorUITests/Pods-minicloudmonitorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		897AC608F303968AD3DFA815 /* Pods-minicloudmonitorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-minicloudmonitorUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-minicloudmonitorUITests/Pods-minicloudmonitorUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2990A24F1611F6E168CA433 /* Pods-minicloudmonitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-minicloudmonitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-minicloudmonitor/Pods-minicloudmonitor.debug.xcconfig"; sourceTree = "<group>"; };
+		DA53D2771E6FB5F700A4C083 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DAB676341E6D9108001CC22B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DAC3CC751E699AA5007EC0A7 /* minicloudmonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = minicloudmonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC3CC781E699AA5007EC0A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		DAC3CC6C1E699AA5007EC0A7 = {
 			isa = PBXGroup;
 			children = (
+				DA53D2771E6FB5F700A4C083 /* Default-568h@2x.png */,
 				DAC3CC771E699AA5007EC0A7 /* minicloudmonitor */,
 				DAC3CC8C1E699AA5007EC0A7 /* minicloudmonitorTests */,
 				DAC3CC971E699AA5007EC0A7 /* minicloudmonitorUITests */,
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC3CC831E699AA5007EC0A7 /* LaunchScreen.storyboard in Resources */,
+				DA53D2781E6FB5F700A4C083 /* Default-568h@2x.png in Resources */,
 				DAC3CC801E699AA5007EC0A7 /* Assets.xcassets in Resources */,
 				DAC3CC7E1E699AA5007EC0A7 /* Main.storyboard in Resources */,
 			);

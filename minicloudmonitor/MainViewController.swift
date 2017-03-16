@@ -20,9 +20,9 @@ class MainViewController: UIViewController {
     let awsIotClient = AwsIotClient.sharedInstance
     
     
+    override var prefersStatusBarHidden: Bool { return true }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
