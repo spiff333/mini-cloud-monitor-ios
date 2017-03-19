@@ -33,7 +33,6 @@ class MainViewController: UIViewController {
             
             let r = sqrt(x * x + y * y)
             
-            
             // TODO remove magic numbers
             if ( r > 60.0 && r < 230.0 ) {
                 let rainbowRange: CGFloat = 0.84

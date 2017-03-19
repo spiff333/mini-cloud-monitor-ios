@@ -27,16 +27,19 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izL-fE-MbQ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="wJe-e9-QTg">
-                                        <rect key="frame" x="-341" y="0.0" width="1166" height="736"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="wJe-e9-QTg">
+                                        <rect key="frame" x="0.0" y="0.0" width="1166" height="736"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="wJe-e9-QTg" secondAttribute="height" multiplier="583:368" id="CO2-L2-hX5"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="wJe-e9-QTg" secondAttribute="trailing" constant="-341" id="5ff-68-hbX"/>
-                                    <constraint firstItem="wJe-e9-QTg" firstAttribute="leading" secondItem="izL-fE-MbQ" secondAttribute="leading" constant="-341" id="Dac-wQ-8ME"/>
-                                    <constraint firstAttribute="bottom" secondItem="wJe-e9-QTg" secondAttribute="bottom" id="SUd-pT-uVl"/>
-                                    <constraint firstItem="wJe-e9-QTg" firstAttribute="top" secondItem="izL-fE-MbQ" secondAttribute="top" id="n4i-FR-4r9"/>
+                                    <constraint firstItem="wJe-e9-QTg" firstAttribute="leading" secondItem="izL-fE-MbQ" secondAttribute="leading" id="YKT-rf-XiR"/>
+                                    <constraint firstAttribute="bottom" secondItem="wJe-e9-QTg" secondAttribute="bottom" id="h0G-8m-308"/>
+                                    <constraint firstAttribute="trailing" secondItem="wJe-e9-QTg" secondAttribute="trailing" id="s4B-Hd-LiA"/>
+                                    <constraint firstItem="wJe-e9-QTg" firstAttribute="top" secondItem="izL-fE-MbQ" secondAttribute="top" id="sfE-CG-nOg"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="center" semanticContentAttribute="spatial" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jV-m3-tfY">
@@ -67,6 +70,7 @@
                             <constraint firstItem="cCC-ch-AiZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TOc-Th-Pkq"/>
                             <constraint firstItem="0jV-m3-tfY" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.91" constant="25" id="Urj-8s-2wm"/>
                             <constraint firstItem="0jV-m3-tfY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aBr-bl-Wh2"/>
+                            <constraint firstItem="wJe-e9-QTg" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="eWc-eR-F2U"/>
                             <constraint firstItem="izL-fE-MbQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gQr-QV-37u"/>
                             <constraint firstItem="izL-fE-MbQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qXA-7C-EJa"/>
                             <constraint firstAttribute="trailing" secondItem="0jV-m3-tfY" secondAttribute="trailing" id="s0K-UK-DTH"/>
@@ -148,9 +152,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wto-h3-YXC">
                                 <rect key="frame" x="20" y="663" width="177.66666666666666" height="52"/>
                                 <color key="backgroundColor" red="1" green="0.80791268829999996" blue="0.15323776829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="162" id="Z6c-5h-KCB"/>
-                                </constraints>
                                 <state key="normal" title="Connect">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
